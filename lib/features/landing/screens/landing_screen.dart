@@ -4,7 +4,7 @@ import 'package:whatsapp_ui/common/widgets/custom_button.dart';
 import 'package:whatsapp_ui/features/auth/screens/login_screen.dart';
 
 class LandingScreen extends StatelessWidget {
-  const LandingScreen({Key? key});
+  const LandingScreen({Key? key}) : super(key: key);
 
   void navigateToLoginScreen(BuildContext context) {
     Navigator.pushNamed(context, LoginScreen.routeName);
