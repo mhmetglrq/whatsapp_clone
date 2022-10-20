@@ -5,11 +5,12 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:whatsapp_ui/common/widgets/loader.dart';
+import 'package:whatsapp_ui/features/chat/controller/chat_controller.dart';
 
-import 'package:whatsapp_ui/features/chat/repositories/chat_repository.dart';
+import 'package:whatsapp_ui/features/chat/widgets/sender_message_card.dart';
 import 'package:whatsapp_ui/models/message.dart';
-import 'package:whatsapp_ui/widgets/my_message_card.dart';
-import 'package:whatsapp_ui/widgets/sender_message_card.dart';
+
+import 'my_message_card.dart';
 
 class ChatList extends ConsumerStatefulWidget {
   final String recieverUserId;
@@ -33,9 +34,8 @@ class _ChatListState extends ConsumerState<ChatList> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<List<Message>>(
-        stream: ref
-            .read(chatRepositoryProvider)
-            .getChatStream(widget.recieverUserId),
+        stream:
+            ref.read(chatControllerProvider).chatStream(widget.recieverUserId),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Loader();
@@ -57,11 +57,13 @@ class _ChatListState extends ConsumerState<ChatList> {
                 return MyMessageCard(
                   message: messageData.text,
                   date: timeSent,
+                  type: messageData.type,
                 );
               }
               return SenderMessageCard(
                 message: messageData.text,
                 date: timeSent,
+                type: messageData.type,
               );
             },
           );

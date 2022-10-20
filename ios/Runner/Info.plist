@@ -29,6 +29,8 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<key>NSContactsUsageDescription</key>
     <string>Contact list to chat</string>
+	<key>NSAppleMusicUsageDescription</key>
+    <string>Needs to hear recordings</string>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
